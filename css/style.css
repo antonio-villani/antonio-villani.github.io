@@ -1,0 +1,203 @@
+/* Antonio Villani — antoniovillani.eu
+   One stylesheet. No frameworks, no external requests, no JavaScript. */
+
+:root {
+  --ink:        #1a1a1a;
+  --ink-soft:   #4a4a4a;
+  --ink-faint:  #6e6e6e;
+  --accent:     #1f4e79;
+  --accent-dk:  #163a59;
+  --rule:       #e2e2e2;
+  --bg:         #ffffff;
+  --bg-soft:    #f7f7f5;
+  --pill:       #eef2f6;
+  --measure:    46rem;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+               "Helvetica Neue", Arial, sans-serif;
+  font-size: 17px;
+  line-height: 1.62;
+  -webkit-font-smoothing: antialiased;
+}
+
+a { color: var(--accent); text-decoration: none; }
+a:hover { color: var(--accent-dk); text-decoration: underline; }
+
+/* ---------- Skip link (accessibility) ---------- */
+.skip-link {
+  position: absolute; left: -9999px; top: 0;
+  background: var(--accent); color: #fff; padding: .6rem 1rem; z-index: 100;
+}
+.skip-link:focus { left: 0; }
+
+/* ---------- Nav ---------- */
+.site-nav {
+  border-bottom: 1px solid var(--rule);
+  background: rgba(255,255,255,.95);
+  position: sticky; top: 0; z-index: 50;
+  backdrop-filter: saturate(180%) blur(8px);
+}
+.nav-inner {
+  max-width: var(--measure); margin: 0 auto; padding: .85rem 1.25rem;
+  display: flex; align-items: baseline; justify-content: space-between;
+  flex-wrap: wrap; gap: .4rem 1rem;
+}
+.nav-name {
+  font-weight: 600; letter-spacing: .01em; color: var(--ink);
+  font-size: 1.02rem; white-space: nowrap;
+}
+.nav-name a { color: inherit; }
+.nav-name a:hover { text-decoration: none; color: var(--accent); }
+.nav-links { display: flex; gap: 1.15rem; flex-wrap: wrap; }
+.nav-links a {
+  color: var(--ink-soft); font-size: .95rem;
+  padding-bottom: 2px; border-bottom: 2px solid transparent;
+}
+.nav-links a:hover { color: var(--accent); text-decoration: none; }
+.nav-links a.active { color: var(--ink); border-bottom-color: var(--accent); font-weight: 500; }
+
+/* ---------- Layout ---------- */
+.container { max-width: var(--measure); margin: 0 auto; padding: 2.6rem 1.25rem 4rem; }
+
+h1 {
+  font-size: 2.05rem; line-height: 1.18; margin: 0 0 .35rem;
+  letter-spacing: -.015em; font-weight: 650;
+}
+h2 {
+  font-size: 1.18rem; margin: 2.9rem 0 1.1rem; letter-spacing: .02em;
+  text-transform: uppercase; color: var(--ink-soft); font-weight: 600;
+  padding-bottom: .45rem; border-bottom: 1px solid var(--rule);
+}
+h3 { font-size: 1.04rem; margin: 1.9rem 0 .5rem; font-weight: 600; }
+p { margin: 0 0 1.05rem; }
+
+/* ---------- Header block ---------- */
+.header-section {
+  display: grid; grid-template-columns: 190px 1fr; gap: 2rem; align-items: start;
+  margin-bottom: .8rem;
+}
+.profile-photo {
+  width: 100%; height: auto; border-radius: 3px; display: block;
+  border: 1px solid var(--rule);
+}
+.role { font-size: 1.02rem; color: var(--ink-soft); margin: 0 0 .3rem; }
+.fields {
+  font-size: .93rem; color: var(--ink-faint); margin: 0 0 .5rem;
+  letter-spacing: .015em;
+}
+.market-flag {
+  display: inline-block; font-size: .82rem; font-weight: 600;
+  letter-spacing: .045em; text-transform: uppercase;
+  color: var(--accent); background: var(--pill);
+  padding: .22rem .6rem; border-radius: 3px; margin-bottom: 1.15rem;
+}
+.intro-text { margin-bottom: 1rem; }
+.header-content > p:last-child { margin-bottom: 0; }
+
+/* ---------- Papers ---------- */
+.paper { padding: 1.35rem 0; border-bottom: 1px solid var(--rule); }
+.paper:last-child { border-bottom: 0; }
+.paper-head {
+  display: flex; align-items: baseline; justify-content: space-between;
+  gap: 1rem; flex-wrap: wrap;
+}
+.paper-title { font-size: 1.06rem; font-weight: 600; margin: 0; line-height: 1.4; flex: 1 1 20rem; }
+.paper-meta { font-size: .88rem; color: var(--ink-faint); margin: .3rem 0 .7rem; }
+.paper-coauthor { font-weight: 400; color: var(--ink-soft); }
+
+.paper-action-btn {
+  display: inline-block; font-size: .84rem; font-weight: 550;
+  padding: .3rem .75rem; border: 1px solid var(--accent); border-radius: 3px;
+  color: var(--accent); background: #fff; white-space: nowrap;
+}
+.paper-action-btn:hover { background: var(--accent); color: #fff; text-decoration: none; }
+.paper-action-btn.muted {
+  border-color: var(--rule); color: var(--ink-faint); cursor: default; background: var(--bg-soft);
+}
+
+/* Native <details> disclosure — no JavaScript anywhere on this site. */
+.paper-toggle { margin-top: .2rem; }
+.paper-toggle > summary {
+  list-style: none; cursor: pointer; display: inline-flex; align-items: center;
+  gap: .38rem; font-size: .84rem; font-weight: 550; letter-spacing: .02em;
+  color: var(--accent); background: var(--pill);
+  padding: .3rem .7rem; border-radius: 3px; user-select: none;
+}
+.paper-toggle > summary::-webkit-details-marker { display: none; }
+.paper-toggle > summary::marker { content: ""; }
+.paper-toggle > summary:hover { background: #e3eaf2; }
+.paper-toggle > summary::after {
+  content: "▸"; font-size: .72rem; transition: transform .15s ease; display: inline-block;
+}
+.paper-toggle[open] > summary::after { transform: rotate(90deg); }
+.paper-abstract {
+  margin: .85rem 0 .2rem; font-size: .955rem; color: var(--ink-soft);
+  text-align: justify; hyphens: auto;
+}
+/* Research page shows abstracts permanently expanded. */
+.abstract-static {
+  margin: .7rem 0 0; font-size: .955rem; color: var(--ink-soft);
+  text-align: justify; hyphens: auto;
+}
+
+/* ---------- Placeholders (must be impossible to miss) ---------- */
+.placeholder {
+  border-left: 3px solid #c9922e; background: #fdf7ea;
+  padding: .8rem 1rem; margin: .9rem 0; font-size: .92rem; color: #6b5320;
+}
+.placeholder strong { color: #8a6516; letter-spacing: .04em; }
+
+/* ---------- Definition-style lists (CV, teaching, contact) ---------- */
+.entry { margin: 0 0 1.4rem; }
+.entry-head {
+  display: flex; justify-content: space-between; gap: 1rem;
+  flex-wrap: wrap; align-items: baseline;
+}
+.entry-title { font-weight: 600; }
+.entry-date { color: var(--ink-faint); font-size: .9rem; white-space: nowrap; }
+.entry-detail { color: var(--ink-soft); font-size: .95rem; margin: .15rem 0 0; }
+
+.contact-list { list-style: none; padding: 0; margin: 0; }
+.contact-list li { margin-bottom: .8rem; }
+.contact-label {
+  display: block; font-size: .8rem; text-transform: uppercase;
+  letter-spacing: .05em; color: var(--ink-faint); margin-bottom: .1rem;
+}
+
+/* ---------- Footer ---------- */
+.site-footer {
+  border-top: 1px solid var(--rule); margin-top: 3.2rem; padding-top: 1.4rem;
+  font-size: .92rem; color: var(--ink-faint);
+}
+.site-footer a { color: var(--accent); }
+.footer-links { display: flex; gap: 1.1rem; flex-wrap: wrap; margin-bottom: .6rem; }
+
+/* ---------- Responsive ---------- */
+@media (max-width: 720px) {
+  body { font-size: 16.5px; }
+  .container { padding: 2rem 1.1rem 3rem; }
+  .header-section { grid-template-columns: 1fr; gap: 1.3rem; justify-items: center; text-align: center; }
+  .profile-photo { max-width: 190px; }
+  .header-content { text-align: left; }
+  h1 { font-size: 1.8rem; text-align: center; }
+  .role, .fields { text-align: center; }
+  .market-flag { display: block; width: fit-content; margin-inline: auto; }
+  .nav-inner { justify-content: center; }
+  .paper-abstract, .abstract-static { text-align: left; }
+}
+
+@media print {
+  .site-nav, .paper-action-btn { display: none; }
+  .paper-toggle > summary { display: none; }
+  .paper-abstract { display: block !important; }
+  a { color: inherit; text-decoration: none; }
+}
