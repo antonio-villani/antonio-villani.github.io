@@ -201,3 +201,91 @@ p { margin: 0 0 1.05rem; }
   .paper-abstract { display: block !important; }
   a { color: inherit; text-decoration: none; }
 }
+
+/* ==========================================================================
+   CV document page (cv.html)
+   Reads as a standalone document rather than a site page: its own toolbar
+   instead of the site nav, tighter section rules, right-aligned year column.
+   ========================================================================== */
+
+.cv-toolbar {
+  border-bottom: 1px solid var(--rule);
+  background: rgba(255,255,255,.95);
+  position: sticky; top: 0; z-index: 50;
+  backdrop-filter: saturate(180%) blur(8px);
+}
+.cv-toolbar-inner {
+  max-width: var(--measure); margin: 0 auto; padding: .8rem 1.25rem;
+  display: flex; align-items: center; justify-content: space-between;
+  gap: .6rem 1rem; flex-wrap: wrap;
+}
+.cv-toolbar-links { display: flex; gap: 1.1rem; flex-wrap: wrap; font-size: .95rem; }
+.cv-toolbar-links a { color: var(--ink-soft); }
+.cv-toolbar-links a:hover { color: var(--accent); text-decoration: none; }
+
+.btn-pdf {
+  display: inline-block; font-size: .86rem; font-weight: 600; letter-spacing: .015em;
+  padding: .4rem .95rem; border-radius: 3px; white-space: nowrap;
+  background: var(--accent); color: #fff; border: 1px solid var(--accent);
+}
+.btn-pdf:hover { background: var(--accent-dk); border-color: var(--accent-dk); color: #fff; text-decoration: none; }
+
+.cv-name {
+  font-size: 1.95rem; font-weight: 650; letter-spacing: -.015em;
+  margin: 0 0 .9rem; line-height: 1.15;
+}
+.cv-contact {
+  display: flex; justify-content: space-between; gap: 1rem 2rem; flex-wrap: wrap;
+  font-size: .93rem; color: var(--ink-soft); line-height: 1.55;
+  padding-bottom: 1.1rem; border-bottom: 2px solid var(--ink);
+}
+
+.cv-section { margin-top: 1.9rem; }
+.cv-section-title {
+  font-size: .82rem; font-weight: 700; letter-spacing: .09em; text-transform: uppercase;
+  color: var(--ink); margin: 0 0 .7rem; padding-bottom: .3rem;
+  border-bottom: 1px solid var(--rule);
+}
+.cv-subsection-title {
+  font-size: .88rem; font-weight: 600; color: var(--ink-soft);
+  margin: 1rem 0 .35rem; font-style: italic;
+}
+
+.cv-entries { width: 100%; border-collapse: collapse; }
+.cv-entries td { vertical-align: top; padding: .3rem 0; font-size: .95rem; }
+.cv-entries td.desc { padding-right: 1.2rem; }
+.cv-entries td.year {
+  text-align: right; white-space: nowrap; color: var(--ink-faint);
+  font-size: .89rem; width: 1%; font-variant-numeric: tabular-nums;
+}
+.cv-entries td.yr {
+  white-space: nowrap; color: var(--ink-faint); font-size: .89rem;
+  width: 1%; padding-right: 1.1rem; font-variant-numeric: tabular-nums;
+}
+.cv-detail { display: block; color: var(--ink-faint); font-size: .88rem; margin-top: .1rem; }
+.cv-list { margin: .2rem 0 0; padding-left: 1.15rem; font-size: .95rem; }
+.cv-list li { margin-bottom: .3rem; }
+.cv-list li::marker { color: var(--ink-faint); }
+.cv-plain { font-size: .95rem; margin: 0; }
+.cv-updated {
+  margin-top: 2.4rem; padding-top: 1rem; border-top: 1px solid var(--rule);
+  font-size: .86rem; color: var(--ink-faint);
+}
+
+@media (max-width: 720px) {
+  .cv-name { font-size: 1.65rem; }
+  .cv-contact { flex-direction: column; gap: .5rem; }
+  /* Stack each row so a long description never crushes the year. */
+  .cv-entries, .cv-entries tbody, .cv-entries tr, .cv-entries td { display: block; width: auto; }
+  .cv-entries tr { padding: .45rem 0; }
+  .cv-entries td { padding: 0; }
+  .cv-entries td.year { text-align: left; margin-top: .1rem; }
+  .cv-entries td.yr { margin-bottom: .1rem; font-weight: 600; }
+}
+
+@media print {
+  .cv-toolbar { display: none; }
+  .cv-section { break-inside: avoid; page-break-inside: avoid; }
+  .cv-contact { border-bottom-color: #000; }
+  .container { padding-top: 0; }
+}
