@@ -16,7 +16,6 @@ website live one level up, in `Package/Website/`, which is outside this repo.
 |---|---|
 | `index.html` | Homepage — bio, job market paper, work in progress |
 | `research.html` | Full paper list, abstracts expanded |
-| `teaching.html` | Teaching experience |
 | `cv.html` | HTML mirror of the CV PDF |
 | `contact.html` | Email, address, profile links |
 | `404.html` | Not-found page |
