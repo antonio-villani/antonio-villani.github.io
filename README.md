@@ -38,7 +38,7 @@ Live in under a minute.
 - Homepage text, the JMP block → `index.html`
 - Full paper list → `research.html`
 - New CV → **overwrite** `files/villani_cv.pdf` (keep the filename)
-- New JMP → **overwrite** `files/villani_jmp.pdf` (keep the filename)
+- New JMP → **overwrite** `files/villani_corporate_purchases_market_power.pdf` (keep the filename)
 
 ## Why the PDF filenames never change
 
